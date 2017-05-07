@@ -19,6 +19,12 @@ window.onload = function() {
     // background
 
     // player
+    const playerWidth = 60;
+    const playerHeight = 10;
+    player = game.add.graphics (game.width/2 - playerWidth/2, game.height -20)
+    player.beginFill(0xFFFFFF, 1)
+    player.drawRect(0,0, playerWidth, playerHeight)
+    player.body.collideWorldBounds = true;
 
     // ball
 
