@@ -24,6 +24,7 @@ window.onload = function() {
     player = game.add.graphics (game.width/2 - playerWidth/2, game.height -20)
     player.beginFill(0xFFFFFF, 1)
     player.drawRect(0,0, playerWidth, playerHeight)
+    game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
 
     // ball
