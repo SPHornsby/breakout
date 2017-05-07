@@ -28,7 +28,10 @@ window.onload = function() {
     player.body.collideWorldBounds = true;
 
     // ball
-
+    ball = game.add.graphics(game.width / 2, game.height - 30)
+    ball.beginFill(0xFFFFFF, 1)
+    ball.drawCircle(0,0,10)
+    game.physics.arcade.enable(ball);
     // bricks
 
     // controls
