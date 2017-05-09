@@ -117,10 +117,19 @@ window.onload = function() {
     if (cursors.right.isDown) {
       player.body.velocity.x = 250;
     }
+    // ball is out
+    if (ballIsOut) {
+      if (checkForThreeSecondsElapsed()) {
+        ballIsOut = false
+        newBall()
+      }
+      updateScreenTimer()
+    }
   }
 
   // helper functions
   function playerHit() {
+
     ball.body.velocity.y *= -1;
     // divide player paddle into zones
     const left = player.body.center.x - 10;
