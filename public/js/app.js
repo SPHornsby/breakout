@@ -97,7 +97,7 @@ window.onload = function() {
     if (ball.body.x <=0 || ball.body.x >= game.width) {
       ball.body.velocity.x *= -1;
     }
-    if (ball.body.y > game.height) {
+    if (ball.body.y > game.height && !ballIsOut) {
       if (player.data.lives <= 0) {
         ball.destroy()
         gameoverText = game.add.text(game.width/2 -100, game.height - 200, 'GAME OVER', { fontSize: '32px', fill: '#999' })
@@ -105,7 +105,7 @@ window.onload = function() {
         gameover = true
       }
       else {
-        newBall()
+        ballOut()
       }
 
     }
@@ -161,17 +161,32 @@ window.onload = function() {
       game.paused = true;
     }
   }
+  function ballOut() {
+    ballIsOutTime = game.time.time
+    ballIsOut = true;
+    countdownText = game.add.text(game.width/2 -16, game.height - 200, '3', { fontSize: '32px', fill: '#999' })
+  }
+  function updateScreenTimer() {
+    let countdown = 3 - Math.floor((game.time.time - ballIsOutTime)/1000)
+    countdownText.text = countdown
+  }
   function newBall() {
     player.data.lives -= 1
     livesText.text = 'Lives: ' + player.data.lives;
     ball.body.x = game.width / 2
     ball.body.y = game.height - 300
     ball.body.velocity.x = 0
+    ball.body.velocity.y = 200
+    countdownText.destroy()
   }
   function pause() {
+    gameStarted = true
     if (!gameover) {
       game.paused = !game.paused
     }
-    
+  }
+  function checkForThreeSecondsElapsed(){
+    let elapsed = game.time.time - ballIsOutTime
+    return elapsed >= 3000 ? true : false;
   }
 };
