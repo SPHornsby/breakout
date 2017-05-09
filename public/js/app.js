@@ -92,14 +92,15 @@ window.onload = function() {
     }
     if (ball.body.y > game.height) {
       if (player.data.lives <= 0) {
-        game.paused = true;
+        ball.destroy()
+        gameoverText = game.add.text(game.width/2 -100, game.height - 200, 'GAME OVER', { fontSize: '32px', fill: '#999' })
+        game.paused = true
+        gameover = true
       }
-      player.data.lives -= 1
-      
-      livesText.text = 'Lives: ' + player.data.lives;
-      ball.body.x = game.width / 2
-      ball.body.y = game.height - 200
-      ball.body.velocity.x = 0
+      else {
+        newBall()
+      }
+
     }
     // controls
     player.body.velocity.x = 0;
