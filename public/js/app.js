@@ -4,7 +4,7 @@ window.onload = function() {
   const height = 600;
 
   const game = new Phaser.Game(width, height, Phaser.AUTO, 'phaser', { preload: preload, create: create, update: update });
-
+  
   // setup
   let player;
   let ball;
@@ -18,6 +18,11 @@ window.onload = function() {
   let pauseKey
   let gameover = false
   let gameoverText
+  let countdownText
+  let ballIsOut = false
+  let ballIsOutTime
+  let gameStarted = false
+  let hits = 0
 
   function preload () {
     game.load.spritesheet('bricks', 'bricksSheet.png', 80,30)
@@ -25,6 +30,7 @@ window.onload = function() {
   
   function create () {
     // background
+
     //score
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#999' });
     livesText = game.add.text(game.width -150, 16, 'Lives: 3', { fontSize: '32px', fill: '#999' })
@@ -80,7 +86,9 @@ window.onload = function() {
   }
 
   function update () {
-    
+    if(!gameStarted) {
+      game.paused = true;
+    }
     // ball collisions
     game.physics.arcade.overlap(ball, player, playerHit)
     game.physics.arcade.overlap(ball, bricks, bricksHit)
