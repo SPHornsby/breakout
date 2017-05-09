@@ -75,6 +75,8 @@ window.onload = function() {
     game.physics.arcade.enable(bricks)
     // controls
     cursors = game.input.keyboard.createCursorKeys();
+    pauseKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    pauseKey.onUp.add(pause)
   }
 
   function update () {
@@ -150,6 +152,18 @@ window.onload = function() {
     if (bricks.countLiving() <= 0) {
       game.paused = true;
     }
-
+  }
+  function newBall() {
+    player.data.lives -= 1
+    livesText.text = 'Lives: ' + player.data.lives;
+    ball.body.x = game.width / 2
+    ball.body.y = game.height - 300
+    ball.body.velocity.x = 0
+  }
+  function pause() {
+    if (!gameover) {
+      game.paused = !game.paused
+    }
+    
   }
 };
