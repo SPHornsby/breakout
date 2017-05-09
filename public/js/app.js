@@ -15,6 +15,9 @@ window.onload = function() {
   let values = [9,7,5,3,1]
   let lives = 3
   let livesText
+  let pauseKey
+  let gameover = false
+  let gameoverText
 
   function preload () {
     game.load.spritesheet('bricks', 'bricksSheet.png', 80,30)
