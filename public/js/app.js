@@ -131,6 +131,11 @@ window.onload = function() {
   function playerHit() {
 
     ball.body.velocity.y *= -1;
+    hits += 1
+    if (hits == 4 || hits == 8 || hits == 12) {
+      ball.body.velocity.y -= 20
+      console.log(ball.body.velocity.y)
+    }
     // divide player paddle into zones
     const left = player.body.center.x - 10;
     const right = player.body.center.x + 10;
