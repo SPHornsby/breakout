@@ -43,9 +43,8 @@ window.onload = function() {
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
     player.data.lives = 3;
-
     // ball
-    ball = game.add.graphics(game.width / 2 , game.height - 100)
+    ball = game.add.graphics(game.width / 2 , game.height - 300)
     ball.beginFill(0xFFFFFF, 1)
     ball.drawRect(0,0, 15, 15)
     ball.autoCull = true;
